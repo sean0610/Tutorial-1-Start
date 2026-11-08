@@ -21,7 +21,7 @@ function sort(compareObject,display) {
     }
 
     if(display==true){
-        for (var i=0;i<tempArray.lenght;i++){
+        for (var i=0;i<tempArray.length;i++){
             var row = document.createElement("tr");
             row.id = tempArray[i].ID;
             var cell1 = document.createElement("td")
@@ -45,7 +45,7 @@ function highlightHighest(compareObject){
     let id = sort(compareObject,false)[0].ID;
     possibleCurrentHighlight = document.getElementsByClassName("highlighter")[0]
     if(possibleCurrentHighlight != undefined)
-        possibleCurrentHighlight[0].classList.remove("highlighter");
+        possibleCurrentHighlight.classList.remove("highlighter");
     document.getElementById(id).classList.add("highlighter");
 }
 
@@ -53,7 +53,7 @@ function dropLowest(compareObject){
     let id = sort(compareObject,false)[globalData.length-1].ID;
     var idColumn = globalData.map(function(value,index) { return value.ID; })
     globalData.splice(idColumn.indexOf(id), 1);
-    document.getElementByID(id).remove();
+    document.getElementById(id).remove();
 }
 
 
@@ -63,7 +63,7 @@ function compareDate(a, b){
     if (aDate < bDate) {
         return -1;
     } else if (aDate > bDate) {
-        return 0;
+        return 1;
     }
     // a must be equal to b
     return 0;
@@ -75,7 +75,7 @@ function compareAmount(a,b){
     if (aAmount < bAmount) {
         return -1;
     } else if (aAmount > bAmount) {
-        return 0;
+        return 1;
     }
     // a must be equal to b
     return 0;
@@ -85,7 +85,7 @@ function compareName(a,b){
     if (a.Customer < b.Customer) {
         return -1;
     } else if (a.Customer > b.Customer) {
-        return 0;
+        return 1;
     }
     // a must be equal to b
     return 0;
